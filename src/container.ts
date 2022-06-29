@@ -20,5 +20,4 @@ class Container {
 
 const two = Container.of(2)
 
-// print results
 print(two)

@@ -19,7 +19,7 @@ class Maybe {
     this.$value = x
   }
 
-  map (fn: (value) => any) {
+  map (fn: (x) => any) {
     return this.isNothing ? this : Maybe.of(fn(this.$value))
   }
 
@@ -31,5 +31,4 @@ class Maybe {
 const age1 = Maybe.of({ name: 'Boris' }).map(_.prop('age')).map(_.add(10)).inspect()
 const age2 = Maybe.of({ name: 'Boris', age: 25 }).map(_.prop('age')).map(_.add(10)).inspect()
 
-// print results
 print(age1, age2)

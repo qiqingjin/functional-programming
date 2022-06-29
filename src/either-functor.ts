@@ -1,6 +1,11 @@
 import * as _ from 'ramda'
 import { inspect, print } from './utils'
 
+/**
+ * `Left` and `Right` are two subclasses of an abstract type we call `Either`.
+ * `Left` ignores our request to map over it.
+ * `Right` will work just like `Functor`.
+ */
 class Either {
   $value: any
 
@@ -18,7 +23,7 @@ class Left extends Either {
     return new Left(x)
   }
 
-  map (fn: (value) => any) {
+  map (fn: (x) => any) {
     return this
   }
 
@@ -32,7 +37,7 @@ class Right extends Either {
     return new Right(x)
   }
 
-  map (fn: (value) => any) {
+  map (fn: (x) => any) {
     return Either.of(fn(this.$value))
   }
 
@@ -49,5 +54,4 @@ const getAgeIn2022 = getAge(new Date('2022').getTime())
 const employees = [{ name: 'Bob', birthDate: 725846400000 }, { name: 'Alice', birthDate: -1 }]
 const ages = _.map(getAgeIn2022, employees)
 
-// print results
 print(ages)

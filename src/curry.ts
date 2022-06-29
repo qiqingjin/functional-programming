@@ -14,5 +14,4 @@ const larger = (x, y) => x >= y ? x : y
 const max = _.reduce((acc, ele) => larger(acc, ele), -Infinity)
 const heighest = max([1, 2, 5, 3])
 
-// print results
 print(splitted, filtered, heighest)
