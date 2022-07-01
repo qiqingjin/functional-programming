@@ -3,7 +3,7 @@ import { print } from './utils'
 /**
  * A `Functor` is a type that implements `map` and obeys some laws.
  */
- class Functor {
+class Functor {
   $value: any
 
   static of (x) {

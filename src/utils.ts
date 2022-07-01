@@ -1,3 +1,5 @@
+import * as _ from 'ramda'
+
 export const print = (...args) => {
   console.log('--- start --- ')
   console.log(...args)
@@ -32,3 +34,7 @@ export const inspect = (x): string => {
 
   return (typeof x === 'function') ? inspectFn(x) : inspectArgs(x)
 }
+
+export const mapIO = _.curry((fn: (x) => any, f: _.Functor<() => any>) => f.map(fn))
+
+export const chainMonad = _.curry((fn: (x) => any, m: _.Functor<any>) => m.map(fn).join())

@@ -1,5 +1,6 @@
 import * as _ from 'ramda'
-import { inspect, print } from './utils'
+import { inspect, mapIO, print } from './utils'
+import * as fs from 'fs'
 
 /**
  * `IO` differs from the previous functors in that the $value is always a function.
@@ -26,10 +27,21 @@ class IO {
   }
 }
 
+// io - 1
 const ioFileName = new IO(() => __filename)
 const toFolderArray = _.compose(_.filter(ele => !!ele), _.split('/'))
 const inFolder = (f: string) => ioFileName.map(_.compose(_.equals(f), _.head, toFolderArray))
 // impure code, run the IO by calling $value()
 const inUsersFolder = inFolder('Users').$value()
 
-print(inUsersFolder)
+// io - 2
+const readFile = filename => new IO(() => fs.readFileSync(filename, 'utf-8'))
+const log = x => new IO(() => {
+  console.log(x)
+  return x
+})
+const cat = _.compose(mapIO(log), readFile)
+const catPackageJson = cat('package.json') as unknown as IO
+const packageJson = catPackageJson.$value().$value()
+
+print(packageJson)
