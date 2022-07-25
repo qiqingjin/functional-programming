@@ -2,7 +2,7 @@ import * as _ from 'ramda'
 import { inspect, print, chainMonad } from './utils'
 
 /**
- * A pointed functor is a functor with an of method. `Monad` is pointed functors that can flatten.
+ * A `Pointed functor` is a functor with an `of` method. `Monad` is pointed functors that can flatten.
  * Any functor which defines a `join` method, has an `of` method, and obeys a few laws is a monad.
  */
 class Monad {

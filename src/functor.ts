@@ -2,6 +2,8 @@ import { print } from './utils'
 
 /**
  * A `Functor` is a type that implements `map` and obeys some laws.
+ * A `Pointed functor` is an object with an `of` function that puts any single value into it.
+ * The following functor is actually `Poinetd functor`.
  */
 class Functor {
   $value: any
